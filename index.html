@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Madina Greeting App</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #7c3aed;
+      --accent2: #a78bfa;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: linear-gradient(135deg, #f8fafc, #eef2ff);
+      color: var(--text);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .shell {
+      width: min(920px, 100%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 18px 60px rgba(31, 41, 55, 0.12);
+      overflow: hidden;
+    }
+    .hero {
+      padding: 32px;
+      background: linear-gradient(135deg, #ede9fe, #faf5ff);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 { margin: 0 0 8px; font-size: 32px; }
+    .hero p { margin: 0; color: var(--muted); }
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 32px;
+    }
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      background: #fff;
+    }
+    label { display: block; font-weight: 700; margin-bottom: 10px; }
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+    }
+    input:focus {
+      border-color: var(--accent2);
+      box-shadow: 0 0 0 4px rgba(167, 139, 250, .18);
+    }
+    .buttons { display: flex; gap: 10px; margin-top: 16px; }
+    button {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 0;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .primary { background: var(--accent); color: white; }
+    .secondary { background: #f3f4f6; color: #374151; }
+    .result {
+      min-height: 118px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #fafafa;
+      border: 1px dashed #d1d5db;
+      font-size: 24px;
+      font-weight: 800;
+      text-align: center;
+      padding: 20px;
+    }
+    .hint { margin-top: 12px; color: var(--muted); font-size: 14px; }
+    @media (max-width: 720px) {
+      .content { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <h1>Madina Greeting App</h1>
+      <p>A lightweight static demo deployed with GitHub Actions and Hugging Face Spaces.</p>
+    </section>
+
+    <section class="content">
+      <div class="panel">
+        <label for="nameInput">Enter your name</label>
+        <input id="nameInput" type="text" placeholder="e.g. Madina" />
+        <div class="buttons">
+          <button class="secondary" onclick="clearAll()">Clear</button>
+          <button class="primary" onclick="submitName()">Create Greeting</button>
+        </div>
+        <div class="hint">This version uses HTML + JavaScript and runs as a Static Space.</div>
+      </div>
+
+      <div class="panel">
+        <label>Result</label>
+        <div id="output" class="result">Your greeting will appear here ✨</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function submitName() {
+      const input = document.getElementById('nameInput');
+      const output = document.getElementById('output');
+      const name = input.value.trim();
+      output.textContent = name
+        ? `Hello, ${name}! Welcome 👋`
+        : 'Please enter your name first.';
+    }
+
+    function clearAll() {
+      document.getElementById('nameInput').value = '';
+      document.getElementById('output').textContent = 'Your greeting will appear here ✨';
+    }
+  </script>
+</body>
+</html>
